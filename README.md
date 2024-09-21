@@ -30,3 +30,4 @@ python3 conversion_speechbrain.py
 ```
 python3 inference.py -f $your_result_path$ -w $waveglow_checkpoint_path$ -o $output_dir$ --is_fp16 -s 0.6
 ```
+* If you need a checkpoint, here is a reference one. Please read Readme.txt in the following [link](https://drive.google.com/drive/folders/1_P1RtZFge_jbnzG9x5NoW0xzC_kJQziR?usp=sharing). Thanks.
