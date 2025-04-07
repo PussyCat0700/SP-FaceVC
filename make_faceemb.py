@@ -7,14 +7,17 @@ import numpy as np
 import os
 from pathlib import Path
 
+from tqdm import tqdm
+
 device='cuda'
 # If required, create a face detection pipeline using MTCNN:
 mtcnn = MTCNN(margin=50, select_largest=False, device='cuda')
 
 # Create an inception resnet (in eval mode):
 resnet = InceptionResnetV1(pretrained='vggface2').to(device).eval()
-rootDir = '/disk/data/preprocess_video_train/'
-targetDir = '/disk/data/lrs3/faceemb_lrs3_mtcnn_margin50/'
+rootDir = '/data0/yfliu/lrs3/frames/test'
+targetDir = '/data0/yfliu/lrs3/spfacevc/test/faceemb_lrs3_mtcnn_margin50/'
+os.makedirs(targetDir, exist_ok=True)
 
 def extract(file):
     while True:
@@ -45,21 +48,22 @@ def extract(file):
 
 
 dirName, subdirList, _ = next(os.walk(rootDir))
-for subdir in sorted(subdirList):
-    #print(os.path.join(dirName,subdir))
-    subdirName, subsubdirList, _ = next(os.walk(os.path.join(dirName,subdir)))
-    for subsubdir in sorted(subsubdirList):
-        _, _, fileList = next(os.walk(os.path.join(subdirName,subsubdir)))
-        for fileName in sorted(fileList):
-            #print(os.path.join(subdirName,subsubdir,fileName))
-            path = os.path.join(subdirName,subsubdir,fileName)
-            extract(path)
-            #assert 0
-            '''try:
-                extract(path)
-                with open('vox_train_spk_lst','a') as f:
-                    f.write(path+'\n')
-            except:
-                with open('train_except.txt','a') as fout:
-                    fout.write(path+'\n')
-                print(path+'\n')'''
+jpg_files = []
+for subdir in os.listdir(rootDir):
+    subdir_path = os.path.join(rootDir, subdir)
+    if os.path.isdir(subdir_path):
+        for filename in os.listdir(subdir_path):
+            if filename.endswith('.jpg'):
+                full_path = os.path.join(subdir_path, filename)
+                jpg_files.append(full_path)
+for path in tqdm(jpg_files):
+    extract(path)
+    #assert 0
+    '''try:
+        extract(path)
+        with open('vox_train_spk_lst','a') as f:
+            f.write(path+'\n')
+    except:
+        with open('train_except.txt','a') as fout:
+            fout.write(path+'\n')
+        print(path+'\n')'''

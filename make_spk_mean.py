@@ -1,10 +1,10 @@
 import os
 import numpy as np
-rootDir = '/disk/data/lrs3/faceemb_lrs3_mtcnn_margin50_500/'
-out_dir = '/disk/data/lrs3/faceemb_lrs3_mtcnn_margin50_500_mean/'
+rootDir = '/data0/yfliu/lrs3/spfacevc/test/faceemb_lrs3_mtcnn_margin50/'
+out_dir = '/data0/yfliu/lrs3/spfacevc/test/faceemb_lrs3_mtcnn_margin50_mean/'
 
-if not os.path.exists('/disk/data/lrs3/faceemb_lrs3_mtcnn_margin50_500_mean/'):
-        os.makedirs('/disk/data/lrs3/faceemb_lrs3_mtcnn_margin50_500_mean/')
+if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
 
 dirName, subdirList, _ = next(os.walk(rootDir))
 

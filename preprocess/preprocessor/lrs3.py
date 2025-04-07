@@ -20,7 +20,7 @@ class Preprocessor(BasePreproceccor):
                 continue
 
             lst = glob(os.path.join(speaker_dir, '*.wav'))
-            basename_list += [os.path.basename(f) for f in lst]
+            basename_list += ['_'.join(f.split('/')[-2:]) for f in lst]
             file_list += lst
         file_dict = dict(zip(file_list, basename_list))
         return file_dict

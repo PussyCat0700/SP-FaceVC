@@ -2,8 +2,8 @@
 
 _name: 'Preprocess Config (default)'
 
-input_path: '/data/mel_for_demo/'
-output_path: '/data/mel_for_demo/'
+input_path: '/data0/yfliu/lrs3/audio/test'
+output_path: '/data0/yfliu/lrs3/spfacevc/test'
 
 preprocessor_name: lrs3
 
