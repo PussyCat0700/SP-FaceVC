@@ -2,8 +2,8 @@
 
 _name: 'Preprocess Config (default)'
 
-input_path: '/data0/yfliu/lrs3/audio/test'
-output_path: '/data0/yfliu/lrs3/spfacevc/test'
+input_path: '/data0/yfliu/lrs3/audio/noise/test'
+output_path: '/data0/yfliu/lrs3/spfacevc/test/noise'
 
 preprocessor_name: lrs3
 

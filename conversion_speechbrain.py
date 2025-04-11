@@ -11,11 +11,11 @@ from scipy.fft import idctn, dctn
 
 ########### parameters here ###############
 basedir = '/data0/yfliu/lrs3/spfacevc'
-result_dir = os.path.join(basedir, 'result')
+result_dir = os.path.join(basedir, 'result_noised')
 no_repar = False
 no_attn = False
 face_dir = '/data0/yfliu/lrs3/spfacevc/test/faceemb_lrs3_mtcnn_margin50/test/'
-mel_dir = '/data0/yfliu/lrs3/spfacevc/test/mel/'
+mel_dir = '/data0/yfliu/lrs3/spfacevc/test/noise/mel/'
 
 os.makedirs(result_dir, exist_ok=True)
 #############################################################
@@ -107,5 +107,5 @@ for src_file, tgt_file in pbar:
             pass  
 
 result_path = os.path.join(result_dir, 'result.pkl')
-with open(result_dir, 'wb') as handle:
+with open(result_path, 'wb') as handle:
     pickle.dump(spect_vc, handle)
